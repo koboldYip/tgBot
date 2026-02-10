@@ -1113,4 +1113,8 @@ def callback_inline(call):
 if __name__ == '__main__':
     print("Бот запущен. Отправьте /start в Telegram.")
 
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(f"Polling error: {e}")

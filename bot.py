@@ -4,6 +4,7 @@ from telebot import types # Для удобства, чтобы не писат�
 import Keyboard1 # Импортируем наш модуль с клавиатурами
 import os
 from dotenv import load_dotenv
+from requests.exceptions import ConnectionError
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 
@@ -1115,6 +1116,6 @@ if __name__ == '__main__':
 
 while True:
     try:
-        bot.polling(none_stop=True)
-    except Exception as e:
+        bot.infinity_polling(timeout=10, long_polling_timeout = 5)
+    except (telebot.apihelper.ApiException, RequestException) as e:
         print(f"Polling error: {e}")
